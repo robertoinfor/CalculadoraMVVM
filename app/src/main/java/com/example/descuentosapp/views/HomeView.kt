@@ -20,17 +20,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import com.example.descuentosapp.components.Alert
 import com.example.descuentosapp.components.MainButton
 import com.example.descuentosapp.components.MainTextField
 import com.example.descuentosapp.components.SpaceH
 import com.example.descuentosapp.components.TwoCards
-
+import com.example.descuentosapp.viewModels.CalcularViewModel1
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeView() {
+fun HomeView(viewModel1: CalcularViewModel1) {
     Scaffold(topBar = {
         CenterAlignedTopAppBar(
             title = { Text(text = "App descuentos", color = Color.White) },
@@ -39,12 +40,12 @@ fun HomeView() {
             )
         )
     }) {
-        ContentHomeView(it)
+        ContentHomeView(it, viewModel1)
     }
 }
 
 @Composable
-fun ContentHomeView(paddingValues: PaddingValues) {
+fun ContentHomeView(paddingValues: PaddingValues, viewModel1: CalcularViewModel1) {
     Column(
         modifier = Modifier
             .padding(paddingValues)
@@ -71,12 +72,7 @@ fun ContentHomeView(paddingValues: PaddingValues) {
         MainTextField(value = descuento, onValueChange = { descuento = it }, label = "Descuento %")
         SpaceH(10.dp)
         MainButton(text = "Generar descuento") {
-            if(precio != "" && descuento != ""){
-                precioDescuento = calcularPrecio(precio.toDouble(), descuento.toDouble())
-                totalDescuento = calcularDescuento(precio.toDouble(), descuento.toDouble())
-            }else{
-                showAlert = true
-            }
+
         }
         SpaceH()
         MainButton(text = "Limpiar", color = Color.Red) {
@@ -96,14 +92,6 @@ fun ContentHomeView(paddingValues: PaddingValues) {
     }
 }
 
-fun calcularPrecio(precio:Double, descuento:Double): Double{
-    val res = precio - calcularDescuento(precio, descuento )
-    return kotlin.math.round(res * 100) /100.0
-}
 
-fun calcularDescuento(precio:Double, descuento:Double): Double {
-    val res = precio * ( 1 - descuento /100 )
-    return kotlin.math.round(res * 100) /100.0
-}
 
 
