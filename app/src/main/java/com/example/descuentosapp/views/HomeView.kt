@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
+import com.example.descuentosapp.R
 import com.example.descuentosapp.components.Alert
 import com.example.descuentosapp.components.MainButton
 import com.example.descuentosapp.components.MainTextField
@@ -34,7 +35,7 @@ import com.example.descuentosapp.viewModels.CalcularViewModel1
 fun HomeView(viewModel1: CalcularViewModel1) {
     Scaffold(topBar = {
         CenterAlignedTopAppBar(
-            title = { Text(text = "App descuentos", color = Color.White) },
+            title = { Text(text = R.string.title.toString(), color = Color.White) },
             colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                 containerColor = MaterialTheme.colorScheme.primary
             )
@@ -72,7 +73,12 @@ fun ContentHomeView(paddingValues: PaddingValues, viewModel1: CalcularViewModel1
         MainTextField(value = descuento, onValueChange = { descuento = it }, label = "Descuento %")
         SpaceH(10.dp)
         MainButton(text = "Generar descuento") {
-
+            val result = viewModel1.calcular(precio, descuento)
+            showAlert = result.second.second
+            if (!showAlert){
+                precioDescuento = result.first
+                totalDescuento = result.second.first
+            }
         }
         SpaceH()
         MainButton(text = "Limpiar", color = Color.Red) {

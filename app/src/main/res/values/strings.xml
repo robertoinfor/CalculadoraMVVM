@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DescuentosApp</string>
+    <string name="title">Sales App</string>
 </resources>
