@@ -35,7 +35,7 @@ import com.example.descuentosapp.viewModels.CalcularViewModel1
 fun HomeView(viewModel1: CalcularViewModel1) {
     Scaffold(topBar = {
         CenterAlignedTopAppBar(
-            title = { Text(text = R.string.title.toString(), color = Color.White) },
+            title = { Text(text = "App descuentos", color = Color.White) },
             colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                 containerColor = MaterialTheme.colorScheme.primary
             )
