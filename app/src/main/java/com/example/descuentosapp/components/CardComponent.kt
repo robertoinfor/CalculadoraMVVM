@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun TwoCards(title1: String, number1: Double, title2: String, number2: Double){
+fun TwoCards(title1: String, number1: String, title2: String, number2: String){
     Row(modifier = Modifier.fillMaxWidth(),
     horizontalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -37,7 +37,7 @@ fun TwoCards(title1: String, number1: Double, title2: String, number2: Double){
 
 
 @Composable
-fun MainCard(title: String, number: Double, modifier: Modifier = Modifier){
+fun MainCard(title: String, number: String, modifier: Modifier = Modifier){
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(

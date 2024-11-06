@@ -10,13 +10,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.descuentosapp.ui.theme.DescuentosAppTheme
 import com.example.descuentosapp.viewModels.CalcularViewModel1
+import com.example.descuentosapp.viewModels.CalcularViewModel2
 import com.example.descuentosapp.views.HomeView
 
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel: CalcularViewModel1 by viewModels()
+        val viewModel: CalcularViewModel2 by viewModels()
 
         setContent {
             DescuentosAppTheme {
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeView(viewModel1 = viewModel);
+                    HomeView(viewModel2 = viewModel);
                 }
             }
         }
