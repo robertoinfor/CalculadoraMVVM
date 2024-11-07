@@ -25,11 +25,19 @@ class CalcularViewModel2 : ViewModel(){
 
     fun calcular(){
         if (precio != "" && descuento != ""){
-            precioDescuento = calcularPrecio(precio.toDouble(), descuento.toDouble())
-            totalDescuento = calcularDescuento()
+            precioDescuento = calcularPrecio(precio.toDouble(), descuento.toDouble()).toString()
+            totalDescuento = calcularDescuento(precio.toDouble(), descuento.toDouble()).toString()
         } else{
             showAlert = true
         }
+    }
+
+    fun calcularDescuento(precio: Double, descuento: Double){
+
+    }
+
+    fun calcularPrecio(precio: Double, descuento: Double){
+        precio*descuento
     }
 
     fun onValue(value: String, text: String){
