@@ -32,12 +32,14 @@ class CalcularViewModel2 : ViewModel(){
         }
     }
 
-    fun calcularDescuento(precio: Double, descuento: Double){
-
+    fun calcularDescuento(precio: Double, descuento: Double): Double {
+        val res = precio * ( 1 - descuento /100 )
+        return kotlin.math.round(res * 100) /100.0
     }
 
-    fun calcularPrecio(precio: Double, descuento: Double){
-        precio*descuento
+    fun calcularPrecio(precio: Double, descuento: Double) : Double{
+        val res = precio - calcularDescuento(precio, descuento)
+        return kotlin.math.round(res * 100) /100.0
     }
 
     fun onValue(value: String, text: String){
@@ -47,13 +49,23 @@ class CalcularViewModel2 : ViewModel(){
             "precioDescuento" -> precioDescuento = value
             "totalDescuento" -> totalDescuento = value
             "showAlert" -> showAlert =
-                if (value.equals("true")) {
+                if (value == "true") {
                     true
                 } else {
                     false
                 }
 
         }
+    }
 
+    fun limpiar(){
+        precio = ""
+        descuento = ""
+        precioDescuento = ""
+        totalDescuento = ""
+    }
+
+    fun cancelarAlerta(){
+        showAlert = false
     }
 }

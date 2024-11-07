@@ -68,21 +68,21 @@ fun ContentHomeView(paddingValues: PaddingValues, viewModel2: CalcularViewModel2
         MainTextField(value = viewModel2.descuento, onValueChange = { viewModel2.onValue(it, "descuento") }, label = "Descuento %")
         SpaceH(10.dp)
         MainButton(text = "Generar descuento") {
-            val result = viewModel2.calcular()
+            viewModel2.calcular()
         }
         SpaceH()
         MainButton(text = "Limpiar", color = Color.Red) {
-            viewModel2.onValue("", "precio")
-            viewModel2.onValue("", "descuento")
-            viewModel2.onValue("", "precioDescuento")
-            viewModel2.onValue("", "totalDescuento")
+            viewModel2.limpiar()
         }
 
         if (viewModel2.showAlert){
             Alert(title = "Alerta",
                 message = "Escribe el precio y descuento",
                 confirmText = "Aceptar",
-                onConfirmClick = { viewModel2.onValue("false", "showAlert") }) { }
+                onConfirmClick = {
+                viewModel2.cancelarAlerta()
+                //viewModel2.onValue("false", "showAlert")
+                }) { }
         }
 
     }
